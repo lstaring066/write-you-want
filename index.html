@@ -348,7 +348,20 @@ document.getElementById("content").value="";
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const supabaseUrl = "https://nrpedfcezmvrrjhhfihy.supabase.co";
+
+const supabaseKey = "sb_publishable_M9eL0D5OIW_NpOYkm8NaLw_d-o7bKHA";
+
+const supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
+console.log("Supabase连接成功");
+</script>
 </body>
 
 </html>
