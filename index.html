@@ -10,143 +10,279 @@
 
 *{
     box-sizing:border-box;
+    font-family:"Microsoft YaHei",sans-serif;
 }
 
 body{
+
     margin:0;
     min-height:100vh;
-    font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Microsoft YaHei",
-    sans-serif;
 
     background:
     linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
+    rgba(20,20,80,.25),
+    rgba(30,10,80,.5)
+    ),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee")
+    center/cover fixed;
 
-    padding:40px 20px;
+    color:white;
+
 }
 
+
+/* 顶部 */
+
+.header{
+
+    text-align:center;
+    padding-top:70px;
+
+}
+
+
+.header h1{
+
+    font-size:55px;
+    margin:0;
+
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 20px #fff,
+    0 0 40px #8b7cff;
+
+}
+
+
+.header p{
+
+    font-size:18px;
+    opacity:.9;
+
+}
+
+
+
+/* 状态 */
+
+.status{
+
+position:absolute;
+right:40px;
+top:30px;
+
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(20px);
+
+padding:12px 25px;
+
+border-radius:50px;
+
+}
+
+
+/* 主卡片 */
 
 .container{
-    max-width:850px;
-    margin:auto;
+
+width:850px;
+max-width:90%;
+
+margin:50px auto;
+
 }
 
 
-h1{
-    color:white;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:40px;
-}
-
+/* 毛玻璃 */
 
 .card{
 
-    background:white;
+background:
 
-    border-radius:28px;
+rgba(255,255,255,.18);
 
-    padding:35px;
 
-    margin-bottom:30px;
+border:
 
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.15);
+1px solid rgba(255,255,255,.35);
+
+
+backdrop-filter:
+
+blur(25px);
+
+
+border-radius:35px;
+
+
+padding:35px;
+
+
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.3);
+
 }
 
 
+
+/* 输入 */
+
 input,textarea{
 
-    width:100%;
 
-    border:1px solid #ddd;
+width:100%;
 
-    border-radius:16px;
 
-    padding:18px;
+background:
 
-    font-size:18px;
+rgba(255,255,255,.25);
 
-    outline:none;
 
-    margin-bottom:20px;
+border:
+
+1px solid rgba(255,255,255,.4);
+
+
+padding:20px;
+
+
+border-radius:20px;
+
+
+font-size:18px;
+
+
+color:white;
+
+
+outline:none;
+
+
+margin-bottom:20px;
+
 
 }
 
 
 textarea{
 
-    height:180px;
+height:180px;
 
-    resize:none;
+resize:none;
 
 }
+
+
+
+input::placeholder,
+textarea::placeholder{
+
+color:#eee;
+
+}
+
+
+
+/* 按钮 */
 
 
 button{
 
-    width:100%;
 
-    border:none;
+width:100%;
 
-    padding:18px;
 
-    border-radius:18px;
+border:none;
 
-    background:#667eea;
 
-    color:white;
+padding:18px;
 
-    font-size:18px;
 
-    cursor:pointer;
+border-radius:25px;
 
-    transition:.3s;
+
+font-size:20px;
+
+
+color:white;
+
+
+cursor:pointer;
+
+
+background:
+
+linear-gradient(
+90deg,
+#8d5cff,
+#36d1ff
+);
+
+
+
+box-shadow:
+
+0 0 30px #55c8ff;
+
 
 }
 
 
-button:hover{
 
-    transform:translateY(-3px);
+/* 记录 */
 
-}
+.records{
 
-
-.record{
-
-    padding:20px;
-
-    border-radius:18px;
-
-    background:#f7f7fb;
-
-    margin-top:15px;
+margin-top:35px;
 
 }
 
 
-.record h3{
 
-    margin:0 0 10px;
+.item{
+
+
+background:
+
+rgba(255,255,255,.18);
+
+
+border-radius:20px;
+
+
+padding:20px;
+
+
+margin-top:15px;
+
+
+border-left:5px solid #8bdcff;
+
 
 }
+
+
+
+.item h3{
+
+margin:0 0 10px;
+
+}
+
 
 
 .time{
 
-    color:#999;
+float:right;
 
-    font-size:13px;
+opacity:.7;
+
+font-size:14px;
 
 }
+
 
 </style>
 
@@ -156,31 +292,44 @@ button:hover{
 <body>
 
 
+<div class="status">
+☁ 已连接数据库
+</div>
+
+
+
+<div class="header">
+
+
+<h1>✍ 我的文字空间</h1>
+
+
+<p>
+记录想法 · 收藏灵感 · 留住重要的瞬间
+</p>
+
+
+</div>
+
+
+
 <div class="container">
-
-
-<h1>✍️ 我的文字空间</h1>
-
 
 
 <div class="card">
 
 
-<input 
-id="title"
+<input id="title"
 placeholder="请输入标题">
 
 
-<textarea
-id="content"
+<textarea id="content"
 placeholder="写下你想记录的内容……">
 </textarea>
 
 
-<button onclick="saveText()">
-
+<button onclick="save()">
 💾 保存
-
 </button>
 
 
@@ -188,21 +337,20 @@ placeholder="写下你想记录的内容……">
 
 
 
-<div class="card">
+<div class="card records">
 
 
-<h2>📚 我的记录</h2>
+<h2>
+📚 我的记录
+</h2>
 
 
-<div id="records">
-
-加载中...
-
-</div>
-
+<div id="list">
 
 </div>
 
+
+</div>
 
 
 </div>
@@ -215,163 +363,89 @@ placeholder="写下你想记录的内容……">
 <script>
 
 
-// ===== Supabase 配置 =====
+const SUPABASE_URL =
+"https://nrpedfcezmvrrjhfihy.supabase.co";
 
 
-const supabaseUrl =
-"https://nrpedfcezmvrrjhhfihy.supabase.co";
-
-
-const supabaseKey =
+const SUPABASE_KEY =
 "sb_publishable_M9eL0D5OIW_NpOYkm8NaLw_d-o7bKHA";
 
 
-
-const client =
+const supabase =
 window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
 
-console.log("Supabase连接成功");
+async function save(){
+
+
+let title =
+document.getElementById("title").value;
+
+
+let content =
+document.getElementById("content").value;
 
 
 
-// 保存文章
-
-async function saveText(){
-
-
-    const title =
-    document.getElementById("title").value;
-
-
-    const content =
-    document.getElementById("content").value;
-
-
-
-    if(!title || !content){
-
-        alert("请填写标题和内容");
-
-        return;
-
-    }
-
-
-
-    const {error} =
-    await client
-    .from("FIRST TRY")
-    .insert({
-
-        title:title,
-
-        content:content
-
-    });
-
-
-
-    if(error){
-
-        alert(error.message);
-
-        console.log(error);
-
-    }
-
-    else{
-
-        alert("保存成功");
-
-        document.getElementById("title").value="";
-
-        document.getElementById("content").value="";
-
-        loadTexts();
-
-    }
-
-
-}
-
-
-
-
-// 读取文章
-
-
-async function loadTexts(){
-
-
-const {data,error}=
-
-await client
-
+await supabase
 .from("FIRST TRY")
+.insert({
 
+title:title,
+content:content
+
+});
+
+
+alert("保存成功 ✨");
+
+
+load();
+
+
+}
+
+
+
+async function load(){
+
+
+let {data}=await supabase
+.from("FIRST TRY")
 .select("*")
-
-.order(
-"created_at",
-{
-ascending:false
-}
-);
-
-
-
-if(error){
-
-console.log(error);
-
-return;
-
-}
+.order("created_at",
+{ascending:false});
 
 
 
 let html="";
 
 
-
-if(data.length===0){
-
-html="暂时还没有记录";
-
-}
-
-else{
+data.forEach(x=>{
 
 
-data.forEach(item=>{
+html+=`
 
-
-html += `
-
-
-<div class="record">
-
+<div class="item">
 
 <h3>
-${item.title}
+${x.title}
+
+<span class="time">
+${new Date(x.created_at)
+.toLocaleString()}
+</span>
+
 </h3>
 
 
 <p>
-${item.content}
+${x.content}
 </p>
-
-
-<div class="time">
-
-${item.created_at}
-
-</div>
 
 
 </div>
@@ -383,24 +457,19 @@ ${item.created_at}
 });
 
 
+
+document.getElementById("list")
+.innerHTML=html;
+
+
 }
 
 
-
-document.getElementById("records").innerHTML=html;
-
-
-}
-
-
-
-loadTexts();
-
+load();
 
 
 </script>
 
 
 </body>
-
 </html>
