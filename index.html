@@ -371,7 +371,7 @@ const SUPABASE_KEY =
 "sb_publishable_M9eL0D5OIW_NpOYkm8NaLw_d-o7bKHA";
 
 
-const supabase =
+const db =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
@@ -391,7 +391,7 @@ document.getElementById("content").value;
 
 
 
-await supabase
+await db
 .from("FIRST TRY")
 .insert({
 
@@ -414,7 +414,7 @@ load();
 async function load(){
 
 
-let {data}=await supabase
+let {data}=await db
 .from("FIRST TRY")
 .select("*")
 .order("created_at",
